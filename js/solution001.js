@@ -5,5 +5,3 @@ function sumMix(x){
     const sum = numX.reduce((acc, curr) => acc + curr)
     return sum
 }
-
-alert('he')
