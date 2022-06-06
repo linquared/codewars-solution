@@ -1,3 +1,3 @@
- function doubleInteger(i) {
+~ function doubleInteger(i) {
     return i * 2;
 }
