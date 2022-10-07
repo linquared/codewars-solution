@@ -1,0 +1,39 @@
+let input = prompt('what would you like to do?')
+let toDo = []
+
+if(input == 'quit'){
+    console.log('okay you have quit the app')
+}
+
+while(input !== 'quit'){
+    if(input == 'new'){
+        let newtodo = prompt('what would you like to add to your list')
+        if(newtodo !== 'list' && newtodo != 'delete'){
+            toDo.push(newtodo)
+            console.log(`${newtodo} has been added to the list`)
+        }
+
+        if(newtodo == 'list'){
+            console.log('********')
+            for(let i = 0; i <toDo.length; i++){
+                console.log(`${i}: ${toDo[i]}`)
+            }
+            console.log('********')
+        }else if(newtodo == 'quit'){
+            console.log('okay you have quit the app')
+            break;
+        }else if(newtodo == 'delete'){
+            let removalCode = prompt('which list number would you like to remove?')
+            console.log('todo REMOVED')
+            toDo.splice(removalCode,1)
+            if(newtodo == 'list'){
+                console.log(toDo)
+            }
+        }
+
+    }else {
+        input = prompt('enter an valid entry')
+    }
+     
+    
+}
