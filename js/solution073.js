@@ -1,6 +1,10 @@
-// 7kyu- Given an array/list [] of n integers , find maximum triplet sum in the array Without duplications .
-function maxTriSum(numbers){
-   let newset = new Set(numbers)
-   return Array.from(newset).sort((a,b) => b - a).slice(0,3).reduce((a,c) => a + c)
+// 7kyu - Given an array of N integers, you have to find how many times you have to add up the smallest numbers in the array until their Sum becomes greater or equal to K.
+function minimumSteps(numbers, value){
+    const nums = numbers.slice().sort((a,b) => a - b);
+    for(let i = 0, sum = 0; i < nums.length; i++){
+        sum += nums[i]
+    }if(sum >= value){
+        return i
+    }
 }
 

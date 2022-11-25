@@ -6,4 +6,3 @@ function preFizz(n) {
     }
     return result
 }
-

@@ -6,3 +6,4 @@ function sortMyString(S) {
   S.split('').map((word, index)=> index % 2 == 0 ? even.push(word) : odd.push(word))
   return even.join('') + " " + odd.join('')
 }
+

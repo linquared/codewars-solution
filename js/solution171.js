@@ -1,6 +1,16 @@
-// 7kyu- Given an array of integers, remove the smallest value. Do not mutate the original array/list. If there are multiple elements with the same value, remove the one with a lower index. If you get an empty array/list, return an empty array/list.
-function removeSmallest(numbers) {
-
-    let minNum= numbers.splice(numbers.indexOf(Math.min(...numbers)), 1)
-    return numbers
- }
+// 6kyu - If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+function solution(number){
+  let multipleOf3and5 = []
+  if(number <= 3){
+    return 0
+  } else {
+    for(let i = 1; i < number; i++){
+        if(i % 3 == 0 || i % 5 == 0){
+        multipleOf3and5.push(i)
+        }
+    }
+   
+    return multipleOf3and5.reduce((a,c) => a+c)
+    
+}
+}
