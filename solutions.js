@@ -233,5 +233,66 @@ const moreMoney = (arr) => {
 //   return sortArr2.every((num, i) => num == squaredArr[i])
 // }
 
-// Implement a function called countUniqueValues, which accepts a sorted array, and counts the unique values in the array. There can be negative numbers in the array, but it will always be sorted. using 2 pointer method with example [1,2,3,4,4,4,7,7,12,12,13],
 
+
+// Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.use that ex
+function anagram(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false
+  }
+  let obj = {}
+
+  for (let letter of str1) {
+    obj[letter] ? obj[letter]++ : obj[letter] = 1
+  }
+
+  for (let letter of str2) {
+    if (obj[letter]) {
+      obj[letter]--
+    } else {
+      return false
+    }
+  }
+  return true
+}
+
+console.log(anagram('cinema', 'iceman'))
+
+// Given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function.
+
+function maxSubarraySum(arr, num) {
+  // add whatever parameters you deem necessary - good luck!
+
+  if (arr.length < num) {
+    return null
+  }
+  let maxSum = 0
+  let tempSum = 0
+
+  for (let i = 0; i < num; i++) {
+    maxSum += arr[i]
+  }
+  tempSum = maxSum
+
+  for (let i = num; i < arr.length; i++) {
+    tempSum = tempSum + arr[i] - arr[i - num]
+    maxSum = Math.max(maxSum, tempSum)
+  }
+
+  return maxSum
+
+}
+
+
+// Write a function called productOfArray which takes in an array of numbers and returns the product of them all.
+
+function productOfArray(num) {
+
+  if (num.length === 0) {
+    return 1
+  }
+
+  return num[0] * productOfArray(num.slice(1))
+
+
+}
