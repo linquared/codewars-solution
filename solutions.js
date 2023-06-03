@@ -234,30 +234,6 @@ const moreMoney = (arr) => {
 // }
 
 
-
-// Given two strings, write a function to determine if the second string is an anagram of the first. An anagram is a word, phrase, or name formed by rearranging the letters of another, such as cinema, formed from iceman.use that ex
-function anagram(str1, str2) {
-  if (str1.length !== str2.length) {
-    return false
-  }
-  let obj = {}
-
-  for (let letter of str1) {
-    obj[letter] ? obj[letter]++ : obj[letter] = 1
-  }
-
-  for (let letter of str2) {
-    if (obj[letter]) {
-      obj[letter]--
-    } else {
-      return false
-    }
-  }
-  return true
-}
-
-console.log(anagram('cinema', 'iceman'))
-
 // Given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function.
 
 function maxSubarraySum(arr, num) {
@@ -296,3 +272,48 @@ function productOfArray(num) {
 
 
 }
+
+
+// find the amount of substring thats repeated in the long string. 
+function stringsearch(long, short) {
+  let count = 0
+
+
+  for (let i = 0; i < long.length; i++) {
+    for (let j = 0; j < short.length; j++) {
+      if (short[j] !== long[i + j]) {
+        break
+      }
+      if (j === short.length - 1) {
+        count++
+      }
+    }
+  }
+  return count
+}
+
+// console.log(stringsearch('ohaomghfioomghggomg', 'omg'))
+
+
+function linearSearch(nums, target) {
+  // add whatever parameters you deem necessary - good luck!
+  let start = 0
+  let end = nums.length - 1
+  let middle = Math.floor((start + end) / 2)
+
+  while (middle !== target) {
+    if (nums[middle] > target) {
+      end = middle - 1
+    } else if (nums[middle] < target) {
+      start = middle + 1
+    } else if (nums[middle] === target && start <= end) {
+      return middle
+    }
+  }
+
+  return -1
+}
+
+console.log(linearSearch([2, 3, 4, 5, 6, 7, 8, 10, 30], 3))
+
+
