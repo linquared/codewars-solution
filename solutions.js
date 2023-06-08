@@ -234,30 +234,7 @@ const moreMoney = (arr) => {
 // }
 
 
-// Given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function.
 
-function maxSubarraySum(arr, num) {
-  // add whatever parameters you deem necessary - good luck!
-
-  if (arr.length < num) {
-    return null
-  }
-  let maxSum = 0
-  let tempSum = 0
-
-  for (let i = 0; i < num; i++) {
-    maxSum += arr[i]
-  }
-  tempSum = maxSum
-
-  for (let i = num; i < arr.length; i++) {
-    tempSum = tempSum + arr[i] - arr[i - num]
-    maxSum = Math.max(maxSum, tempSum)
-  }
-
-  return maxSum
-
-}
 
 
 // Write a function called productOfArray which takes in an array of numbers and returns the product of them all.
@@ -274,46 +251,7 @@ function productOfArray(num) {
 }
 
 
-// find the amount of substring thats repeated in the long string. 
-function stringsearch(long, short) {
-  let count = 0
 
 
-  for (let i = 0; i < long.length; i++) {
-    for (let j = 0; j < short.length; j++) {
-      if (short[j] !== long[i + j]) {
-        break
-      }
-      if (j === short.length - 1) {
-        count++
-      }
-    }
-  }
-  return count
-}
-
-// console.log(stringsearch('ohaomghfioomghggomg', 'omg'))
-
-
-function linearSearch(nums, target) {
-  // add whatever parameters you deem necessary - good luck!
-  let start = 0
-  let end = nums.length - 1
-  let middle = Math.floor((start + end) / 2)
-
-  while (middle !== target) {
-    if (nums[middle] > target) {
-      end = middle - 1
-    } else if (nums[middle] < target) {
-      start = middle + 1
-    } else if (nums[middle] === target && start <= end) {
-      return middle
-    }
-  }
-
-  return -1
-}
-
-console.log(linearSearch([2, 3, 4, 5, 6, 7, 8, 10, 30], 3))
 
 
