@@ -203,55 +203,21 @@ function sort(str) {
 //   return !bracketChecker.length;
 // }
 
-const moreMoney = (arr) => {
-  let diff = 0;
-  for (let i = 0; i < arr.length - 1; i++) {
-    // console.log(arr[i])
-    for (let j = i + 1; j < arr.length; j++) {
-      const temp = arr[j] - arr[i]
 
-      if (temp > diff) {
-        diff = temp
-      }
-      // console.log(arr[j]);
-
-    }
-  }
-  return diff;
-}
-
-// console.log(moreMoney([7, 1, 5, 3, 6, 4]));
+// You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string. Return the merged string.
 
 
-// const same = (array1, array2) => {
+function mergewords(word1, word2) {
 
-//   if (array1.length != array2.length) {
-//     return false
-//   }
-//   const squaredArr = array1.map(num => num * num).sort((a, b) => a - b)
-//   const sortArr2 = array2.sort((a, b) => a - b)
-//   return sortArr2.every((num, i) => num == squaredArr[i])
-// }
+  let result = ''
 
-
-
-
-
-// Write a function called productOfArray which takes in an array of numbers and returns the product of them all.
-
-function productOfArray(num) {
-
-  if (num.length === 0) {
-    return 1
+  for (let i = 0; i < Math.max(word1.length, word2.length); i++) {
+    if (i < word1.length) result += word1[i]
+    if (i < word2.length) result += word2[i]
   }
 
-  return num[0] * productOfArray(num.slice(1))
-
-
+  return result
 }
 
-
-
-
-
+console.log(mergeword('abcs', 'qrs'))
 
