@@ -204,20 +204,22 @@ function sort(str) {
 // }
 
 
-// You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string. Return the merged string.
-
+// For two strings s and t, we say "t divides s" if and only if s = t + ... + t (i.e., t is concatenated with itself one or more times).
+// Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+// EXAMPLE: Input: str1 = "ABCABC", str2 = "ABC"
+// Output: "ABC"
 
 function mergewords(word1, word2) {
+  if (word1 + word2 !== word2 + word1) return ''
 
-  let result = ''
+  function gcd(x, y) {
+    if (!y) return x
 
-  for (let i = 0; i < Math.max(word1.length, word2.length); i++) {
-    if (i < word1.length) result += word1[i]
-    if (i < word2.length) result += word2[i]
+    return gcd(y, x % y)
   }
 
-  return result
+  return gcd(word1, word2)
 }
 
-console.log(mergeword('abcs', 'qrs'))
+console.log(mergewords('ABCABCABC', 'ABC'))
 
