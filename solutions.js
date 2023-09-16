@@ -204,22 +204,49 @@ function sort(str) {
 // }
 
 
-// For two strings s and t, we say "t divides s" if and only if s = t + ... + t (i.e., t is concatenated with itself one or more times).
-// Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
-// EXAMPLE: Input: str1 = "ABCABC", str2 = "ABC"
-// Output: "ABC"
+// solution 223
 
-function mergewords(word1, word2) {
-  if (word1 + word2 !== word2 + word1) return ''
+// There are n kids with candies.You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
 
-  function gcd(x, y) {
-    if (!y) return x
+// Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
 
-    return gcd(y, x % y)
+// Note that multiple kids can have the greatest number of candies.
+
+
+
+var kidsWithCandies = function (candies, extraCandies) {
+  let result = []
+  let maxCandies = Math.max(...candies)
+
+  for (let i = 0; i < candies.length; i++) {
+    if (candies[i] + extraCandies >= maxCandies) {
+      result.push(true)
+    } else {
+      result.push(false)
+    }
   }
 
-  return gcd(word1, word2)
+  return result
+};
+
+
+const selectionSort = (arr) => {
+
+  for (let i = 0; i < arr.length; i++) {
+    let lowest = i
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < arr[lowest]) {
+        lowest = j
+        let temp = arr[i]
+        arr[i] = arr[lowest]
+        arr[j] = temp
+      }
+      // console.log(arr[i], arr[j])
+    }
+  }
+  return arr
+
 }
 
-console.log(mergewords('ABCABCABC', 'ABC'))
 
+console.log(selectionSort([22, 50, 16, 9, 2]))
