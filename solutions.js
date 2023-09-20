@@ -207,23 +207,12 @@ function sort(str) {
 
 // use selection sort to sort the arrary from small to large number
 
-const selectionSort = (arr, target) => {
 
-  let count = 0
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] !== arr[i + 1]) {
-      console.log('ay')
-    } else {
-      count++
-    }
-  }
-  return count - 1
+const dup = (arr) => {
+  return new Set(arr).size === arr.length ? false : true
+
 }
 
 
-console.log(selectionSort([1, 0, 0, 0, 1, 0, 0, 1], 1))
-
-
-
-
+console.log(dup([2, 14, 18, 22, 22]))
