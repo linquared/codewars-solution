@@ -1,6 +1,6 @@
 // giving an array of integers representing heights. you want to find two lines that create the largest possible rectangular container. Your job is to figure out which two lines to choose to maximize the size of this container. hint using 2 pts method
 
-const two = (nums) => {
+const area = (nums) => {
     let left = 0
     let right = nums.length - 1
     let temp = 0
