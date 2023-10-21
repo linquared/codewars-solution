@@ -209,25 +209,52 @@ function sort(str) {
 
 
 
-const substrs = (s, k) => {
-  let [left, maxLen, topF] = [0, 0, 0]
-  let freq = {}
+const minwindow = (s, t) => {
+  if (s.length < t.length) return ''
+
+  let left = 0
+  let tHash = {}
+
+  for (let letter of t) {
+    tHash[letter] = (tHash[letter] || 0) + 1
+  }
+  let needCount = Object.keys(tHash).length
+
+
+  let haveTable = {}
+  for (const key of Object.keys(tHash)) {
+    haveTable[key] = 0
+  }
+
+  let haveCount = 0
+
+  let minLen = Infinity
+  let pairs = ''
+
 
   for (let right = 0; right < s.length; right++) {
     let char = s[right]
-
-    freq[char] = (freq[char] || 0) + 1
-    topF = Math.max(topF, freq[char])
-
-    if (right - left + 1 - topF > k) {
-      freq[s[left]]--
+    if (tHash[char]) {
+      haveTable[char] += 1
+      if (tHash[char] === haveTable[char]) {
+        haveCount++
+      }
+    }
+    while (haveCount === needCount) {
+      if (right - left + 1 < minLen) {
+        minLen = Math.min(minLen, right - left + 1)
+        pairs = s.slice(left, right + 1)
+      }
+      let leftchar = s[left]
+      haveTable[leftchar]--
+      if (haveTable[leftchar] < tHash[leftchar]) {
+        haveCount--
+      }
       left++
     }
-
-    maxLen = Math.max(maxLen, right - left + 1)
   }
-  return maxLen
+  return pairs
 }
 
-console.log(substrs('AABABBA', 1))
+console.log(minwindow('ADOBECODEBANC', 'ABC'))
 
