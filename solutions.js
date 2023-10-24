@@ -180,28 +180,6 @@ function sort(str) {
   return result
 }
 
-// console.log(sort('test4 is2 a3 this1'))
-
-// let isValid = (s) => {
-//   let newArr = s.split("")
-//   let bracketChecker = []
-//   for (let i = 0; i < newArr.length; i++) {
-//     if (newArr[i] === "{") {
-//       bracketChecker.push('}')
-//     }
-//     else if (newArr[i] === "[") {
-//       bracketChecker.push(']')
-//     }
-//     else if (newArr[i] === "(") {
-//       bracketChecker.push(')')
-//     }
-//     else if (bracketChecker.pop() !== newArr[i]) {
-//       return false;
-//     }
-//   }
-
-//   return !bracketChecker.length;
-// }
 
 
 
@@ -209,52 +187,36 @@ function sort(str) {
 
 
 
-const minwindow = (s, t) => {
-  if (s.length < t.length) return ''
 
-  let left = 0
-  let tHash = {}
 
-  for (let letter of t) {
-    tHash[letter] = (tHash[letter] || 0) + 1
+
+
+// left, right, minlength, 2 tables- neededtable & neededcount, havetable & count 
+// if needtable[char] === havetable[char] havecount++
+
+// once the count are the same, and minlenth than orignal find the min length, and the indices
+// move along from left, deduct from havetable , and have count--
+
+function minwindow(s) {
+  let map = {
+    '[': ']',
+    '{': '}',
+    '(': ')'
   }
-  let needCount = Object.keys(tHash).length
+  const stack = []
 
-
-  let haveTable = {}
-  for (const key of Object.keys(tHash)) {
-    haveTable[key] = 0
-  }
-
-  let haveCount = 0
-
-  let minLen = Infinity
-  let pairs = ''
-
-
-  for (let right = 0; right < s.length; right++) {
-    let char = s[right]
-    if (tHash[char]) {
-      haveTable[char] += 1
-      if (tHash[char] === haveTable[char]) {
-        haveCount++
-      }
-    }
-    while (haveCount === needCount) {
-      if (right - left + 1 < minLen) {
-        minLen = Math.min(minLen, right - left + 1)
-        pairs = s.slice(left, right + 1)
-      }
-      let leftchar = s[left]
-      haveTable[leftchar]--
-      if (haveTable[leftchar] < tHash[leftchar]) {
-        haveCount--
-      }
-      left++
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i]
+    if (map[char]) {
+      stack.push(map[char])
+    } else if (stack.length > 0 && char === stack[stack.length - 1]) {
+      stack.pop()
+    } else {
+      return false
     }
   }
-  return pairs
+  return stack.length === 0
 }
 
-console.log(minwindow('ADOBECODEBANC', 'ABC'))
 
+console.log(minwindow('{[]}'))
