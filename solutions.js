@@ -165,22 +165,6 @@ function maxLetters(string) {
 
 // console.log(maxLetters("If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough, the next logical step is to find a random paragraph.We created the Random Paragraph Generator with you in mind.The process is quite simple.Choose the number of random paragraphs you'd like to see and click the button. Your chosen number of paragraphs will instantly appear. While it may not be obvious to everyone, there are a number of reasons creating random paragraphs can be useful. A few examples of how some people use this generator are listed in the following paragraphs."))
 
-function sort(str) {
-  let result = []
-  let newstr = str.split(' ')
-
-  for (let i = 0; i < newstr.length; i++) {
-    for (let j = 0; j < newstr[i].length; j++) {
-      if (Number(newstr[i][j])) {
-        result[newstr[i][j] - 1] = newstr[i]
-      }
-    }
-
-  }
-  return result
-}
-
-
 
 
 // use selection sort to sort the arrary from small to large number
@@ -190,33 +174,22 @@ function sort(str) {
 
 
 
+function isValid(num) {
+  let left = 0
+  let right = num.length - 1
 
-// left, right, minlength, 2 tables- neededtable & neededcount, havetable & count 
-// if needtable[char] === havetable[char] havecount++
-
-// once the count are the same, and minlenth than orignal find the min length, and the indices
-// move along from left, deduct from havetable , and have count--
-
-function minwindow(s) {
-  let map = {
-    '[': ']',
-    '{': '}',
-    '(': ')'
-  }
-  const stack = []
-
-  for (let i = 0; i < s.length; i++) {
-    let char = s[i]
-    if (map[char]) {
-      stack.push(map[char])
-    } else if (stack.length > 0 && char === stack[stack.length - 1]) {
-      stack.pop()
+  while (left < right) {
+    mid = Math.floor((left + right) / 2)
+    if (num[mid] > num[right]) {
+      left = mid + 1
     } else {
-      return false
+      right = mid
     }
   }
-  return stack.length === 0
+  return num[left]
+
 }
 
+console.log(isValid([4, 5, 6, 7, 0, 1, 2, 3, 3]))
 
-console.log(minwindow('{[]}'))
+
