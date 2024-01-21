@@ -174,22 +174,32 @@ function maxLetters(string) {
 
 
 
-function isValid(num) {
+function isValid(nums, target) {
   let left = 0
-  let right = num.length - 1
+  let end = nums.length - 1
 
-  while (left < right) {
-    mid = Math.floor((left + right) / 2)
-    if (num[mid] > num[right]) {
-      left = mid + 1
+  while (left <= end) {
+    let mid = Math.floor((end + left) / 2)
+
+    if (nums[mid] === target) { return mid }
+
+    if (nums[left] <= nums[mid]) {
+      if (nums[left] <= target && target < nums[mid]) {
+        end = mid - 1
+      } else {
+        left = mid + 1
+      }
     } else {
-      right = mid
+      if (nums[mid] < target && target <= nums[end]) {
+        left = mid + 1
+      } else {
+        end = mid - 1
+      }
     }
   }
-  return num[left]
-
+  return -1
 }
 
-console.log(isValid([4, 5, 6, 7, 0, 1, 2, 3, 3]))
+console.log(isValid([4, 5, 6, 7, 0, 1, 2], 9))
 
 
