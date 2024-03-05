@@ -166,19 +166,23 @@ function maxLetters(string) {
 // console.log(maxLetters("If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough, the next logical step is to find a random paragraph.We created the Random Paragraph Generator with you in mind.The process is quite simple.Choose the number of random paragraphs you'd like to see and click the button. Your chosen number of paragraphs will instantly appear. While it may not be obvious to everyone, there are a number of reasons creating random paragraphs can be useful. A few examples of how some people use this generator are listed in the following paragraphs."))
 
 
+// In a small town the population is p0 = 1000 at the beginning of a year. The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town. How many years does the town need to see its population greater than or equal to p = 1200 inhabitants?
 
-// use selection sort to sort the arrary from small to large number
+function nbYear(p0, percent, aug, p) {
+  // let totalPop = p0
+  let count = 0
+  // let increasePop = totalPop + (totalPop * (.01 * percent) + aug)
 
 
-var reverseList = function (head) {
-  // Special case...
-  if (head == null || head.next == null) return head;
-  // Create a new node to call the function recursively and we get the reverse linked list...
-  var res = reverseList(head.next);
-  // Set head node as head.next.next...
-  head.next.next = head;
-  //set head's next to be null...
-  head.next = null;
-  return res;     // Return the reverse linked list...
-};
-console.log(reverseList([1, 2, 3, 4]));
+  while (p0 < p) {
+    p0 = p0 + (Math.floor(p0 * (.01 * percent) + aug))
+    count++
+  }
+
+  return count
+
+}
+
+console.log(nbYear(1500000, 0.25, 1000, 2000000))
+
+
