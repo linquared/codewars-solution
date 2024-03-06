@@ -166,23 +166,24 @@ function maxLetters(string) {
 // console.log(maxLetters("If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough, the next logical step is to find a random paragraph.We created the Random Paragraph Generator with you in mind.The process is quite simple.Choose the number of random paragraphs you'd like to see and click the button. Your chosen number of paragraphs will instantly appear. While it may not be obvious to everyone, there are a number of reasons creating random paragraphs can be useful. A few examples of how some people use this generator are listed in the following paragraphs."))
 
 
-// In a small town the population is p0 = 1000 at the beginning of a year. The population regularly increases by 2 percent per year and moreover 50 new inhabitants per year come to live in the town. How many years does the town need to see its population greater than or equal to p = 1200 inhabitants?
+function decrypt(encryptedText, n) {
+  if (!encryptedText || n <= 0) return encryptedText
 
-function nbYear(p0, percent, aug, p) {
-  // let totalPop = p0
-  let count = 0
-  // let increasePop = totalPop + (totalPop * (.01 * percent) + aug)
+  for (let i = 0; i < n; i++) {
 
+    let odd = encryptedText.slice(0, Math.floor(encryptedText.length / 2))
+    let even = encryptedText.slice(Math.floor(encryptedText.length / 2), encryptedText.length)
 
-  while (p0 < p) {
-    p0 = p0 + (Math.floor(p0 * (.01 * percent) + aug))
-    count++
+    let result = ''
+    for (let j = 0; j < Math.max(odd.length, even.length); j++) {
+      if (j < even.length) result += even[j]
+      if (j < odd.length) result += odd[j]
+    }
+    encryptedText = result
   }
 
-  return count
-
+  return encryptedText
 }
 
-console.log(nbYear(1500000, 0.25, 1000, 2000000))
-
+console.log(decrypt("hsi  etTi sats!", 1))
 
