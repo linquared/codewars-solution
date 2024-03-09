@@ -166,15 +166,19 @@ function maxLetters(string) {
 // console.log(maxLetters("If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough, the next logical step is to find a random paragraph.We created the Random Paragraph Generator with you in mind.The process is quite simple.Choose the number of random paragraphs you'd like to see and click the button. Your chosen number of paragraphs will instantly appear. While it may not be obvious to everyone, there are a number of reasons creating random paragraphs can be useful. A few examples of how some people use this generator are listed in the following paragraphs."))
 
 
-function deleteNth(arr, n) {
-  let obj = {}
+function findOdd(A) {
+  let hash = {}
 
-  return arr.filter(num => {
-    obj[num] = (obj[num] || 0) + 1
-    return obj[num] <= n
-  })
-  // return obj
+  for (let num of A) {
+    hash[num] = (hash[num] || 0) + 1
+  }
+
+  for (let key in hash) {
+    if (hash[key] % 2 !== 0) {
+      return Number(key)
+    }
+  }
 }
 
-console.log(deleteNth([1, 1, 3, 3, 7, 2, 2, 2, 2], 3))
+console.log(findOdd([1, 1, 2]))
 
