@@ -166,51 +166,20 @@ function maxLetters(string) {
 // console.log(maxLetters("If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough, the next logical step is to find a random paragraph.We created the Random Paragraph Generator with you in mind.The process is quite simple.Choose the number of random paragraphs you'd like to see and click the button. Your chosen number of paragraphs will instantly appear. While it may not be obvious to everyone, there are a number of reasons creating random paragraphs can be useful. A few examples of how some people use this generator are listed in the following paragraphs."))
 
 
-function isPangram(string) {
-  let alphabet = {
-    a: 1,
-    b: 1,
-    c: 1,
-    d: 1,
-    e: 1,
-    f: 1,
-    g: 1,
-    h: 1,
-    i: 1,
-    j: 1,
-    k: 1,
-    l: 1,
-    m: 1,
-    n: 1,
-    o: 1,
-    p: 1,
-    q: 1,
-    r: 1,
-    s: 1,
-    t: 1,
-    u: 1,
-    v: 1,
-    w: 1,
-    x: 1,
-    y: 1,
-    z: 1,
-  }
+function solution(string) {
+  let result = ''
 
-  let text = string.toLowerCase()
+  for (let i = 0; i < string.length; i++) {
+    if (string[i].toUpperCase() === string[i]) {
+      result += ` ${string[i]}`
+    } else {
+      result += string[i]
+    }
 
-  for (let letter of text) {
-    if (alphabet[letter]) {
-      alphabet[letter]--
-    }
   }
-  for (let key in alphabet) {
-    if (alphabet[key] > 0) {
-      return false
-    }
-  }
-  return true
+  return result
 }
 
-console.log(isPangram("This is not a pangram."))
+console.log(solution("camelCasingTestx"))
 
 // This is not a pangram.
