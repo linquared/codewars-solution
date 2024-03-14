@@ -167,16 +167,49 @@ function maxLetters(string) {
 
 
 
-function count(string) {
-  if (string === null) return {};
-  let obj = {}
+function encode(string) {
+  // let hash = {
+  //   a: 1,
+  //   e: 2,
+  //   i: 3,
+  //   o: 4,
+  //   u: 5,
+  // }
+
+  // let result = ''
+
+  // for (let letter of string) {
+  //   if (hash[letter]) {
+  //     result += hash[letter]
+  //   } else {
+  //     result += letter
+  //   }
+  // }
+  // return result
+
+  let hash = {
+    1: 'a',
+    2: 'e',
+    3: 'i',
+    4: 'o',
+    5: 'u',
+  }
+
+  let result = ''
 
   for (let letter of string) {
-    obj[letter] = (obj[letter] || 0) + 1
+    if (hash[letter]) {
+      result += hash[letter]
+    } else {
+      result += letter
+    }
   }
-  return obj
+  return result
+
+
 }
 
-console.log(count("camelCasingTestx"))
+
+console.log(encode('h2ll4'))
 
 // This is not a pangram.
