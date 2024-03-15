@@ -167,49 +167,33 @@ function maxLetters(string) {
 
 
 
-function encode(string) {
-  // let hash = {
-  //   a: 1,
-  //   e: 2,
-  //   i: 3,
-  //   o: 4,
-  //   u: 5,
-  // }
-
-  // let result = ''
-
-  // for (let letter of string) {
-  //   if (hash[letter]) {
-  //     result += hash[letter]
-  //   } else {
-  //     result += letter
-  //   }
-  // }
-  // return result
-
-  let hash = {
-    1: 'a',
-    2: 'e',
-    3: 'i',
-    4: 'o',
-    5: 'u',
+function solution(roman) {
+  let nums = {
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000,
+    "I": 1,
   }
+  // MCMXC
+  let sum = 0
 
-  let result = ''
+  for (let i = 0; i < roman.length; i++) {
+    let current = nums[roman[i]]
+    let next = nums[roman[i + 1]]
 
-  for (let letter of string) {
-    if (hash[letter]) {
-      result += hash[letter]
+    if (next > current) {
+      sum -= current
     } else {
-      result += letter
+      sum += current
     }
   }
-  return result
 
-
+  return sum
 }
 
 
-console.log(encode('h2ll4'))
+console.log(solution('MCMXC'))
 
-// This is not a pangram.
