@@ -167,33 +167,52 @@ function maxLetters(string) {
 
 
 
-function solution(roman) {
-  let nums = {
-    'V': 5,
-    'X': 10,
-    'L': 50,
-    'C': 100,
-    'D': 500,
-    'M': 1000,
-    "I": 1,
+// function goodVsEvil(good, evil) {
+//   let goods = good.split(' ')
+//   let goodSum = 0
+//   let evils = evil.split(' ')
+//   let evilSum = 0
+
+//   for (let i = 0; i < goods.length; i++) {
+//     goodSum += Number(goods[i])
+//   }
+
+//   for (let i = 0; i < evils.length; i++) {
+//     evilSum += Number(evils[i])
+//   }
+
+
+//   if (evilSum > goodSum) {
+//     return "Battle Result: Evil eradicates all trace of Good"
+//   } else if (goodSum > evilSum) {
+//     return "Battle Result: Good triumphs over Evil"
+//   } else {
+//     return "Battle Result: No victor on this battle field"
+//   }
+
+// }
+
+function twoOldestAges(ages) {
+  let first = 0
+  let sec = 0
+
+  for (let i = 0; i < ages.length; i++) {
+    let temp = ages[i]
+    first = Math.max(first, temp)
   }
-  // MCMXC
-  let sum = 0
 
-  for (let i = 0; i < roman.length; i++) {
-    let current = nums[roman[i]]
-    let next = nums[roman[i + 1]]
+  let index = ages.indexOf(first)
+  ages.splice(index, 1)
 
-    if (next > current) {
-      sum -= current
-    } else {
-      sum += current
-    }
+  for (let i = 0; i < ages.length; i++) {
+    let temp = ages[i]
+    sec = Math.max(sec, temp)
+
   }
 
-  return sum
+  return [sec, first]
+
 }
 
-
-console.log(solution('MCMXC'))
+console.log(twoOldestAges([64, 99, 19, 72, 99, 51, 55, 27, 1, 23, 6, 94, 77]))
 
