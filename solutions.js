@@ -192,27 +192,15 @@ function maxLetters(string) {
 
 // }
 
-function twoOldestAges(ages) {
-  let first = 0
-  let sec = 0
+function persistence(num) {
+  let count = 0
 
-  for (let i = 0; i < ages.length; i++) {
-    let temp = ages[i]
-    first = Math.max(first, temp)
+  while (num > 9) {
+    num = num.toString().split('').reduce((a, c) => Number(c) * Number(a), 1)
+    count++
   }
-
-  let index = ages.indexOf(first)
-  ages.splice(index, 1)
-
-  for (let i = 0; i < ages.length; i++) {
-    let temp = ages[i]
-    sec = Math.max(sec, temp)
-
-  }
-
-  return [sec, first]
-
+  return count
 }
 
-console.log(twoOldestAges([64, 99, 19, 72, 99, 51, 55, 27, 1, 23, 6, 94, 77]))
+console.log(persistence(999))
 
