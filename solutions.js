@@ -191,16 +191,21 @@ function maxLetters(string) {
 //   }
 
 // }
+function moveZeros(arr) {
+  let zero = []
 
-function persistence(num) {
-  let count = 0
-
-  while (num > 9) {
-    num = num.toString().split('').reduce((a, c) => Number(c) * Number(a), 1)
-    count++
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 0) {
+      zero.push(arr[i])
+      arr.splice(i, 1)
+      i--
+    }
   }
-  return count
+  return arr.concat(...zero)
+
 }
 
-console.log(persistence(999))
+console.log(moveZeros([9, 0, 0, 9, 1, 2, 0,
+  1, 0, 1, 0, 3, 0, 1,
+  9, 0, 0, 0, 0, 9]))
 
