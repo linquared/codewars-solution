@@ -191,21 +191,38 @@ function maxLetters(string) {
 //   }
 
 // }
-function moveZeros(arr) {
-  let zero = []
+function validate(num) {
+  // length
+  let evenOrOdd = num.toString()
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === 0) {
-      zero.push(arr[i])
-      arr.splice(i, 1)
-      i--
+  // after double
+  let nums = []
+
+  // step 1: double num
+  for (let i = 0; i < evenOrOdd.length; i++) {
+    if (evenOrOdd.length % 2 === 0) {
+      if (i % 2 === 0) {
+        nums.push(evenOrOdd[i] * 2)
+      } else {
+        nums.push(evenOrOdd[i])
+      }
+    } else {
+      if (i % 2 !== 0) {
+        nums.push(evenOrOdd[i] * 2)
+      } else {
+        nums.push(evenOrOdd[i])
+      }
     }
   }
-  return arr.concat(...zero)
+  // step 2
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > 9) {
+      nums[i] = nums[i] - 9
+    }
+  }
 
+  return nums.reduce((a, c) => Number(a) + Number(c), 0) % 10 === 0
 }
 
-console.log(moveZeros([9, 0, 0, 9, 1, 2, 0,
-  1, 0, 1, 0, 3, 0, 1,
-  9, 0, 0, 0, 0, 9]))
+console.log(validate(1230))
 
