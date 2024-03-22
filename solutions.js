@@ -191,38 +191,22 @@ function maxLetters(string) {
 //   }
 
 // }
-function validate(num) {
-  // length
-  let evenOrOdd = num.toString()
+function highestRank(arr) {
+  let hash = {}
+  let max = 0
+  let num = 0
 
-  // after double
-  let nums = []
-
-  // step 1: double num
-  for (let i = 0; i < evenOrOdd.length; i++) {
-    if (evenOrOdd.length % 2 === 0) {
-      if (i % 2 === 0) {
-        nums.push(evenOrOdd[i] * 2)
-      } else {
-        nums.push(evenOrOdd[i])
-      }
-    } else {
-      if (i % 2 !== 0) {
-        nums.push(evenOrOdd[i] * 2)
-      } else {
-        nums.push(evenOrOdd[i])
-      }
-    }
-  }
-  // step 2
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] > 9) {
-      nums[i] = nums[i] - 9
-    }
+  for (const n of arr) {
+    hash[n] = (hash[n] || 0) + 1
   }
 
-  return nums.reduce((a, c) => Number(a) + Number(c), 0) % 10 === 0
+  for (let key in hash) {
+    if (hash[key] >= max) {
+      max = hash[key]
+      num = key
+    }
+  }
+  return Number(num)
 }
-
-console.log(validate(1230))
+console.log(highestRank([12, 10, 8, 8, 3, 3, 3, 3, 2, 4, 10, 12, 10]))
 
