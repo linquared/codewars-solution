@@ -191,22 +191,26 @@ function maxLetters(string) {
 //   }
 
 // }
-function highestRank(arr) {
-  let hash = {}
-  let max = 0
-  let num = 0
+function isValidIP(str) {
 
-  for (const n of arr) {
-    hash[n] = (hash[n] || 0) + 1
-  }
+  let nums = str.split('.')
 
-  for (let key in hash) {
-    if (hash[key] >= max) {
-      max = hash[key]
-      num = key
+  if (nums.length !== 4) return false
+
+  for (let n of nums) {
+    if (Number(n) >= 0 && Number(n) < 256) {
+      if (n.length > 1 && n[0] === '0') {
+        return false
+      }
+    } else {
+      return false
     }
   }
-  return Number(num)
+  return true
 }
-console.log(highestRank([12, 10, 8, 8, 3, 3, 3, 3, 2, 4, 10, 12, 10]))
 
+
+
+console.log(scramble('katas', 'steak'))
+
+// 1e0.1e1.1e2.2e2
