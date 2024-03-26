@@ -209,8 +209,14 @@ function isValidIP(str) {
   return true
 }
 
+function removeDuplicateWords(s) {
+  let str = s.split(' ')
+  let set = new Set(str)
 
+  return Array.from(set).join(' ')
 
-console.log(scramble('katas', 'steak'))
+}
+
+console.log(removeDuplicateWords('alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta'))
 
 // 1e0.1e1.1e2.2e2
