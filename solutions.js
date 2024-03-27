@@ -209,14 +209,25 @@ function isValidIP(str) {
   return true
 }
 
-function removeDuplicateWords(s) {
-  let str = s.split(' ')
-  let set = new Set(str)
+function validPhoneNumber(phoneNumber) {
+  if (phoneNumber.length !== 14) return false
+  let s = {
+    '(': 0,
+    ')': 4,
+    ' ': 5,
+    '-': 9,
+  }
+  let count = 0
 
-  return Array.from(set).join(' ')
-
+  for (let i = 0; i < phoneNumber.length; i++) {
+    let char = phoneNumber[i]
+    if (s[char] === i) {
+      count++
+    }
+  }
+  return count === 4
 }
 
-console.log(removeDuplicateWords('alpha beta beta gamma gamma gamma delta alpha beta beta gamma gamma gamma delta'))
+console.log(validPhoneNumber("(123) 456-7890abc"))
 
 // 1e0.1e1.1e2.2e2
