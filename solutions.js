@@ -191,43 +191,18 @@ function maxLetters(string) {
 //   }
 
 // }
-function isValidIP(str) {
+var filterString = function (value) {
+  let n = ''
 
-  let nums = str.split('.')
-
-  if (nums.length !== 4) return false
-
-  for (let n of nums) {
-    if (Number(n) >= 0 && Number(n) < 256) {
-      if (n.length > 1 && n[0] === '0') {
-        return false
-      }
-    } else {
-      return false
+  for (let i = 0; i < value.length; i++) {
+    if (value[i].charCodeAt() >= 48 && value[i].charCodeAt() < 58) {
+      n += value[i]
     }
   }
-  return true
+
+  return Number(n)
 }
 
-function validPhoneNumber(phoneNumber) {
-  if (phoneNumber.length !== 14) return false
-  let s = {
-    '(': 0,
-    ')': 4,
-    ' ': 5,
-    '-': 9,
-  }
-  let count = 0
-
-  for (let i = 0; i < phoneNumber.length; i++) {
-    let char = phoneNumber[i]
-    if (s[char] === i) {
-      count++
-    }
-  }
-  return count === 4
-}
-
-console.log(validPhoneNumber("(123) 456-7890abc"))
+console.log(filterString("5enc802l701fhk4y539y"))
 
 // 1e0.1e1.1e2.2e2
