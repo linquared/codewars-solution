@@ -191,33 +191,22 @@ function maxLetters(string) {
 //   }
 
 // }
-function gifts(number) {
-  const gift = {
-    1: 'Toy Soldier',
-    2: 'Wooden Train',
-    4: 'Hoop',
-    8: 'Chess Board',
-    16: 'Horse',
-    32: 'Teddy',
-    64: 'Lego',
-    128: 'Football',
-    256: 'Doll',
-    512: "Rubik's Cube",
+function evenChars(string) {
+  if (string.length < 2 || string.length > 100) {
+    return "invalid string"
   }
+  let result = []
 
-  let max = 0
-
-  if (number === 0) return []
-
-  for (let toy in gift) {
-    if (toy <= number) {
-      max = Math.max(max, toy)
+  for (let i = 0; i < string.length; i++) {
+    if (i % 2 !== 0) {
+      result.push(string[i])
     }
   }
-
-  return [gift[max]].concat(gifts(number - max)).sort();
+  return result
 }
 
-console.log(gifts(3))
+
+console.log(evenChars("a"))
 
 // 1e0.1e1.1e2.2e2
+
