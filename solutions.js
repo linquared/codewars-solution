@@ -191,22 +191,24 @@ function maxLetters(string) {
 //   }
 
 // }
-function evenChars(string) {
-  if (string.length < 2 || string.length > 100) {
-    return "invalid string"
-  }
-  let result = []
+function moveVowel(input) {
+  let nonV = ''
+  let vowel = ''
+  let v = 'aeiou'
 
-  for (let i = 0; i < string.length; i++) {
-    if (i % 2 !== 0) {
-      result.push(string[i])
+  for (let i = 0; i < input.length; i++) {
+    let letter = input[i]
+    if (v.includes(letter)) {
+      vowel += letter
+    } else {
+      nonV += letter
     }
   }
-  return result
+
+  return nonV + vowel
 }
 
-
-console.log(evenChars("a"))
+console.log(moveVowel("apple"))
 
 // 1e0.1e1.1e2.2e2
 
