@@ -1,21 +1,5 @@
 
 
-// const body = document.querySelector('body')
-// document.querySelector('#colorbtn').addEventListener('click', change)
-
-// function change(){
-//     let rbg1 = document.querySelector('#rgb1').innerText = `${Math.floor(Math.random()*255)},`
-//     let rbg2 = document.querySelector('#rgb2').innerText = ` ${Math.floor(Math.random()*255)},`
-//     let rbg3 = document.querySelector('#rgb3').innerText = ` ${Math.floor(Math.random()*255)}`
-//     const rgbValue = `rgb(${rgb1.innerText}${rgb2.innerText}${rgb3.innerText})`
-
-//     body.style.backgroundColor = rgbValue
-
-// }
-
-
-
-
 
 function meeting(s) {
   return s.toUpperCase().replace(/:/g, ', ').split(';')
@@ -110,7 +94,7 @@ function compare(array) {
     }
   }
 
-  // return result
+  return result
 }
 
 
@@ -192,31 +176,50 @@ function maxLetters(string) {
 
 // }
 
-// Write a function named first_non_repeating_letter† that takes a string input, and returns the first character that is not repeated anywhere in the string.
-// For example, if given the input 'stress', the function should return 't', since the letter t only occurs once in the string, and occurs first in the string.
-// As an added challenge, upper - and lowercase letters are considered the same character, but the function should return the correct case for the initial letter.For example, the input 'sTreSS' should return 'T'.
-// If a string contains all repeating characters, it should return an empty string("");
 
-function firstNonRepeatingLetter(s) {
-  let char = {}
-  let result = ''
-  for (const l of s) {
-    char[l.toLowerCase()] = (char[l.toLowerCase()] || 0) + 1
-  }
 
-  if (Object.values(char).indexOf(1) === -1) return ''
+// You are given a secret message you need to decipher. Here are the things you need to know to decipher it:
 
-  for (let i = 0; i < s.length; i++) {
-    let letter = s[i]
-    if (char[letter.toLowerCase()] === 1) {
-      result += letter
-      break
+// For each word:
+
+// the second and the last letter is switched(e.g.Hello becomes Holle)
+// the first letter is replaced by its character code(e.g.H becomes 72)
+// there are no special characters used, only letters and spaces
+// words are separated by a single space
+// there are no leading or trailing spaces
+function decipherThis(str) {
+  let s = []
+  let n = []
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i]
+    let num = ''
+
+    if (isNaN(Number(char))) {
+      s.push(char)
+    } else {
+      num += Number(char)
     }
+    n.push(num)
   }
-  return result
+  return n
 }
 
-console.log(firstNonRepeatingLetter('sTreSS'))
+function groupByCommas(n) {
+  let nums = n.toString().split('').reverse()
+  let result = []
+
+  for (let i = 0; i < nums.length; i++) {
+    if (i !== 0 && i % 3 == 0) {
+      result.push(',')
+    }
+    result.push(nums[i])
+  }
+  return result.reverse().join('')
+
+}
+console.log(groupByCommas('35235235'))
+
 
 // 1e0.1e1.1e2.2e2
 
