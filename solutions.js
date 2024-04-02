@@ -205,20 +205,34 @@ function decipherThis(str) {
   return n
 }
 
-function groupByCommas(n) {
-  let nums = n.toString().split('').reverse()
+const orderedCount = function (text) {
+
+  if (text.length === 0) return [];
+  let hash = {}
   let result = []
+  let set = new Set()
 
-  for (let i = 0; i < nums.length; i++) {
-    if (i !== 0 && i % 3 == 0) {
-      result.push(',')
+  for (const l of text) {
+    hash[l] = (hash[l] || 0) + 1
+    if (!set.has(l)) {
+      set.add(l)
     }
-    result.push(nums[i])
   }
-  return result.reverse().join('')
 
+  // for (const key in hash) {
+  //   result.push([key, hash[key]])
+  // }
+  for (let n of set) {
+    if (hash[n]) {
+      result.push([n, hash[n]])
+    }
+  }
+
+  return result
 }
-console.log(groupByCommas('35235235'))
+
+
+console.log(orderedCount("abracadabra"))
 
 
 // 1e0.1e1.1e2.2e2
