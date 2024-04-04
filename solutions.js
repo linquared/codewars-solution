@@ -205,34 +205,34 @@ function decipherThis(str) {
   return n
 }
 
-const orderedCount = function (text) {
+function numberOfPairs(gloves) {
+  let pairs = {}
+  let count = 0
 
-  if (text.length === 0) return [];
-  let hash = {}
-  let result = []
-  let set = new Set()
+  for (let side of gloves) {
+    pairs[side] = (pairs[side] || 0) + 1
+  }
 
-  for (const l of text) {
-    hash[l] = (hash[l] || 0) + 1
-    if (!set.has(l)) {
-      set.add(l)
+  for (let color in pairs) {
+    if (pairs[color] > 1) {
+      count += Math.floor(pairs[color] / 2)
     }
   }
 
-  // for (const key in hash) {
-  //   result.push([key, hash[key]])
-  // }
-  for (let n of set) {
-    if (hash[n]) {
-      result.push([n, hash[n]])
-    }
-  }
-
-  return result
+  return count
 }
 
 
-console.log(orderedCount("abracadabra"))
+console.log(numberOfPairs([
+  'Gray', 'Fuchsia', 'Yellow',
+  'Navy', 'Green', 'Teal',
+  'Red', 'White', 'Navy',
+  'Olive', 'Yellow', 'Maroon',
+  'Maroon', 'Red', 'Lime',
+  'Yellow', 'Silver', 'Aqua',
+  'Green', 'Green', 'Fuchsia',
+  'Blue', 'Maroon'
+]))
 
 
 // 1e0.1e1.1e2.2e2
