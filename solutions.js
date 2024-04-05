@@ -205,27 +205,39 @@ function decipherThis(str) {
   return n
 }
 
-function reverse(str) {
-  let words = str.split(' ')
-  let result = ''
-
-  for (let i = 0; i < words.length; i++) {
-    let reverse = ''
-    if (i % 2 !== 0) {
-      for (let j = words[i].length - 1; j >= 0; j--) {
-        reverse += words[i][j]
-      }
-      result += reverse + ' '
-    } else {
-      result += words[i] + ' '
-    }
-
+function dashatize(n) {
+  let menu = {
+    'burger': 0,
+    'fries': 0,
+    'chicken': 0,
+    'pizza': 0,
+    'sandwich': 0,
+    'onionrings': 0,
+    'milkshake': 0,
+    'coke': 0,
   }
-  return result.trim()
+  let left = 0
+  let order = []
+
+  for (let right = 0; right < n.length; right++) {
+    if (menu[n.slice(left, right + 1)] != undefined) {
+      menu[n.slice(left, right + 1)]++
+      left = right + 1
+    }
+  }
+
+  for (let item in menu) {
+    if (menu[item] >= 1) {
+      let i = item[0].toUpperCase() + item.slice(1, item[item.length])
+      order.push(`${i} `.repeat(menu[item]).trim())
+
+    }
+  }
+
+  return order.join(' ')
 }
 
-
-console.log(reverse("Reverse this string, please!"))
+console.log(dashatize("milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza"))
 
 
 // 1e0.1e1.1e2.2e2
