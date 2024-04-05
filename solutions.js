@@ -205,34 +205,27 @@ function decipherThis(str) {
   return n
 }
 
-function numberOfPairs(gloves) {
-  let pairs = {}
-  let count = 0
+function reverse(str) {
+  let words = str.split(' ')
+  let result = ''
 
-  for (let side of gloves) {
-    pairs[side] = (pairs[side] || 0) + 1
-  }
-
-  for (let color in pairs) {
-    if (pairs[color] > 1) {
-      count += Math.floor(pairs[color] / 2)
+  for (let i = 0; i < words.length; i++) {
+    let reverse = ''
+    if (i % 2 !== 0) {
+      for (let j = words[i].length - 1; j >= 0; j--) {
+        reverse += words[i][j]
+      }
+      result += reverse + ' '
+    } else {
+      result += words[i] + ' '
     }
-  }
 
-  return count
+  }
+  return result.trim()
 }
 
 
-console.log(numberOfPairs([
-  'Gray', 'Fuchsia', 'Yellow',
-  'Navy', 'Green', 'Teal',
-  'Red', 'White', 'Navy',
-  'Olive', 'Yellow', 'Maroon',
-  'Maroon', 'Red', 'Lime',
-  'Yellow', 'Silver', 'Aqua',
-  'Green', 'Green', 'Fuchsia',
-  'Blue', 'Maroon'
-]))
+console.log(reverse("Reverse this string, please!"))
 
 
 // 1e0.1e1.1e2.2e2
