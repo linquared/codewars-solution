@@ -205,32 +205,24 @@ function decipherThis(str) {
   return n
 }
 
-function toNato(words) {
+function kebabize(str) {
+  let lowerStr = str.toLowerCase()
+  let result = ''
 
-  // NATO['A'] === 'Alfa', etc.
-  const NATO = {
-    'H': 'Halo',
-    'E': 'Elephant',
-    'L': 'Logan',
-    'O': 'Orange',
-  }
-
-  let result = []
-
-  for (let l of words) {
-    let letter = l.toUpperCase()
-    if (NATO[letter]) {
-      result.push(NATO[letter])
-    } else if (letter === ',' || letter === '!' || letter === '.' || letter === '?') {
-      result.push(letter)
+  for (let i = 0; i < lowerStr.length; i++) {
+    if (str[i] !== lowerStr[i]) {
+      result += '-'
     }
+    result += lowerStr[i]
   }
 
-  return result.join(' ')
-
+  if (result[0] === '-') {
+    return result.slice(1, result.length).replace(/[0-9]+/g, '')
+  } else {
+    return result.replace(/[0-9]+/g, '')
+  }
 }
-
-console.log(toNato('hello hello,'))
+console.log(kebabize("Camels2HaveThreeHumps"))
 
 
 // 1e0.1e1.1e2.2e2
