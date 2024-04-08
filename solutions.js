@@ -205,24 +205,25 @@ function decipherThis(str) {
   return n
 }
 
-function kebabize(str) {
-  let lowerStr = str.toLowerCase()
-  let result = ''
+function bingo(ticket, win) {
 
-  for (let i = 0; i < lowerStr.length; i++) {
-    if (str[i] !== lowerStr[i]) {
-      result += '-'
+  let count = 0
+
+  ticket.forEach(n => {
+    let letter = n[0]
+    let code = n[1]
+
+    for (let i = 0; i < letter.length; i++) {
+      if (letter[i].charCodeAt() === code) {
+        count++
+      }
     }
-    result += lowerStr[i]
-  }
+  })
 
-  if (result[0] === '-') {
-    return result.slice(1, result.length).replace(/[0-9]+/g, '')
-  } else {
-    return result.replace(/[0-9]+/g, '')
-  }
+  return count >= win ? 'Winner' : 'Loser'
 }
-console.log(kebabize("Camels2HaveThreeHumps"))
+
+console.log(bingo([['ABC', 65], ['HGR', 72], ['BYHT', 74]], 2))
 
 
 // 1e0.1e1.1e2.2e2
