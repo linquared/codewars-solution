@@ -205,25 +205,21 @@ function decipherThis(str) {
   return n
 }
 
-function cakes(recipe, available) {
-  if (Object.keys(recipe).length > Object.keys(available).length) return 0
 
-  let count = []
+function encode(str, n) {
+  let alpha = 'abcdefghijklmnopqrstuvwxyz'
+  let num = n.toString().split('')
+  let result = []
 
-  for (let ingre in recipe) {
-    if (recipe[ingre] === available[ingre]) {
-      count.push(1)
-    } else if (recipe[ingre] < available[ingre]) {
-      count.push(Math.floor(available[ingre] / recipe[ingre]))
-    } else {
-      return 0
-    }
+  for (let i = 0; i < str.length; i++) {
+    let key = num[i % num.length]
+    result.push(alpha.indexOf(str[i]) + 1 + Number(key))
+
   }
-
-  return Math.min(...count)
+  return result
 }
 
-console.log(cakes({ apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100 }, { sugar: 500, flour: 2000, milk: 2000 }))
+console.log(encode("scouts", 1939))
 
 
 // 1e0.1e1.1e2.2e2
