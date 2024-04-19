@@ -206,20 +206,25 @@ function decipherThis(str) {
 }
 
 
-function encode(str, n) {
-  let alpha = 'abcdefghijklmnopqrstuvwxyz'
-  let num = n.toString().split('')
-  let result = []
+function validateWord(s) {
+  let obj = {}
 
-  for (let i = 0; i < str.length; i++) {
-    let key = num[i % num.length]
-    result.push(alpha.indexOf(str[i]) + 1 + Number(key))
-
+  for (const n of s) {
+    obj[n.toLowerCase()] = (obj[n.toLowerCase()] || 0) + 1
   }
-  return result
+
+  for (let i = 0; i < Object.values(obj).length; i++) {
+    let val = Object.values(obj)
+
+    if (val[i + 1] !== undefined && val[i] !== val[i + 1]) {
+      return false
+    }
+  }
+  return true
+
 }
 
-console.log(encode("scouts", 1939))
+console.log(validateWord("Abc;abc"))
 
 
 // 1e0.1e1.1e2.2e2
